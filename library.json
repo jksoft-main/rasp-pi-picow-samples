@@ -1,0 +1,19 @@
+{
+"name": "rasp-pi-picow-samples",
+"version": "1.0.0",
+"frameworks": "Arduino",
+"keywords": "samlle, RaspberryPiPicoW",
+"description": "Sample sketches and libraries for Raspberry Pi Pico W",
+"url": "https://github.com/jksoft-main/PicowGuidebook",
+"authors":
+[
+{
+        "name": "Junichi Katsu"
+}
+],
+"repository":
+{
+    "type": "git",
+    "url": "https://github.com/jksoft-main/PicowGuidebook"
+}
+}

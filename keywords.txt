@@ -1,0 +1,17 @@
+#######################################
+# Syntax Coloring Map For rasp-pi-picow-samples
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ConnectWifi	KEYWORD1
+
+#######################################
+# Methods (KEYWORD2)
+#######################################
+
+begin KEYWORD2
+isConnected KEYWORD2
+getIp KEYWORD2
