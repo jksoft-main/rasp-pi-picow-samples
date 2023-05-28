@@ -1,1 +1,2 @@
-# rasp-pi-picow-samples
+# インターネット連携も手軽になったRaspberry Pi Pico Wガイドライブラリ
+インターネット連携も手軽になったRaspberry Pi Pico Wガイドで紹介しているライブラリとスケッチ例です。
