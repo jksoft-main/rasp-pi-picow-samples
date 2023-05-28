@@ -1,5 +1,5 @@
 #######################################
-# Syntax Coloring Map For rasp-pi-picow-samples
+# Syntax Coloring Map For PicowGuidebook
 #######################################
 
 #######################################
