@@ -8,6 +8,8 @@ void setup() {
 }
 
 void loop() {
-  Serial.printf("WiFi:%s IP:%s\n",connect.isConnected() ? "Connected" : "No connect",connect.getIp().c_str());
+  Serial.printf("WiFi:%s IP:%s\n",
+    connect.isConnected() ? "Connected" : "No connect",
+    connect.getIp().c_str());
   delay(1000);
 }
