@@ -62,7 +62,7 @@ void loop() {
     // USBから供給されている場合はウェイトのみ
     delay(intervalTime - (millis()-startTime));
   } else {
-    // 電池の場合は、省電力化してウェイとしてから再起動
+    // 電池の場合は、省電力化してウェイトしてから再起動
     // BME280をスリープ
     delay(10);
     Wire.beginTransmission(BME280_ADDRESS);
@@ -78,7 +78,7 @@ void loop() {
     set_sys_clock_khz(20000, true);
     // Vregの電圧を下げる
     vreg_set_voltage(VREG_VOLTAGE_0_95);
-    // 起動してからの時間も合わせて5分間ウェイト
+    // 起動してからの時間も計算してウェイト
     delay(intervalTime - millis());
     // 再起動
     rp2040.reboot();
