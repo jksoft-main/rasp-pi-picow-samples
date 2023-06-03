@@ -3,7 +3,7 @@
 #include "HX711.h"
 
 // LINEアクセストークン
-#define LINE_ACCESS_TOKEN "gMkenNHvjKnU9gDbxwmeu4eZD4OB8mnBK2MPMqFcLLH"
+#define LINE_ACCESS_TOKEN "LINE access token"
 
 const char* lineAccessToken = "Bearer " LINE_ACCESS_TOKEN;
 
