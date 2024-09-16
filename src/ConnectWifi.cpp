@@ -102,14 +102,53 @@ void ConnectWifi::captivePortal() {
 }
 
 void ConnectWifi::handleRoot() {
-  String html = "<!doctype html><html lang=\"ja\">";
-  html += "<head><meta charset=\"utf-8\"/></head>";
-  html += "<body><h1>WiFi 設定</h1>";
-  html += "<form method='POST' action='/save'>";
-  html += "<p>SSID: <input type='text' name='ssid'></p>";
-  html += "<p>Password: <input type='text' name='password'></p>";
-  html += "<input type='submit' value='Save'></form>";
+  auto cnt = WiFi.scanNetworks();
+
+  String html = "<!DOCTYPE html><html lang='ja'><head><meta charset='UTF-8'>";
+  html += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+  html += "<title>Wi-Fiのアクセスポイント設定</title>";
+  html += "<link href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' rel='stylesheet'>";
+  html += "<style>.wifi-card{margin:20px 0;padding:20px;border-radius:10px;background-color:#f9f9f9;box-shadow:0px 4px 8px rgba(0, 0, 0, 0.1);}";
+  html += ".wifi-card:hover{background-color:#e0f7fa;transition:0.3s;}.wifi-header{display:flex;justify-content:space-between;align-items:center;}";
+  html += ".wifi-header h5{margin:0;}</style></head><body><div class='container'><h4 class='center-align'>Wi-Fiのアクセスポイント設定</h4>";
+  
+  // フォーム開始
+  html += "<form action='/save' method='POST'>";
+
+  // プルダウンリストの作成
+  html += "<div class='wifi-card'><div class='wifi-header'><h5>SSIDを選択してください</h5></div>";
+  html += "<div class='input-field'><select id='wifiSSID' name='ssid' required>";
+  html += "<option value='' disabled selected> SSIDを選択</option>";
+
+  
+  // サンプルWi-Fiリストを追加
+  for (int i = 1; i <= cnt; i++) {
+    uint8_t bssid[6];
+    WiFi.BSSID(i, bssid);
+
+    html += "<option value='";
+    html += String(WiFi.SSID(i));
+    html += "'>";
+    html += String(WiFi.SSID(i));
+    html += "</option>";
+  }
+
+  html += "</select></div>";
+  html += "<button type='button' class='btn waves-effect waves-light' onclick='location.reload()'>SSIDを再読み込み</button></div>";
+  
+  // パスワード入力
+  html += "<div class='wifi-card'><div class='wifi-header'><h5>パスワードを入力してください</h5></div>";
+  html += "<div class='input-field'><input type='password' id='password' name='password' required>";
+  html += "<label for='password'></label></div></div>";
+  
+  // Connectボタン
+  html += "<button type='submit' class='btn waves-effect waves-light'>設定</button>";
+  html += "</form>"; // フォーム終了
+
+  html += "</div><script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>";
+  html += "<script>document.addEventListener('DOMContentLoaded', function() { var elems = document.querySelectorAll('select'); var instances = M.FormSelect.init(elems); });</script>";
   html += "</body></html>";
+
   connectWifiServer->send(200, "text/html", html);
 }
 
